@@ -21,7 +21,9 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
+    "VERSION",
     "lib/runtimer.rb",
+    "runtimer.gemspec",
     "test/helper.rb",
     "test/test_runtimer.rb"
   ]

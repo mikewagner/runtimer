@@ -14,6 +14,7 @@ class Runtimer
       body = (body << message)
       headers['Content-Length'] = Rack::Utils.bytesize(body.to_s).to_s
     end
+    [status, headers, body]
   end
    
 
