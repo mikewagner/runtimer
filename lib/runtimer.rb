@@ -10,7 +10,7 @@ class Runtimer
     status, headers, body = @app.call(env)
     @stop   = Time.now
 
-    if headers['Content-Type']/to_s.include?('text/html')
+    if headers['Content-Type'].to_s.include?('text/html')
       body = (body << message)
       headers['Content-Length'] = Rack::Utils.bytesize(body.to_s).to_s
     end
