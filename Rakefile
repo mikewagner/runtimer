@@ -7,9 +7,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "runtimer"
   gem.homepage = "http://github.com/mikewagner/runtimer"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "michael.wagner@fsc.follett.com"
+  gem.summary = "Rack application to automatically add response time to every page"
+  gem.description = ""
+  gem.email = "mwagner@digitalinsites.com"
   gem.authors = ["Michael Wagner"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
