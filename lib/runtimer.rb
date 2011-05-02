@@ -9,14 +9,17 @@ class Runtimer
 
   def call(env)
     @start = Time.now
-    status, headers, body = @app.call(env)
+    status, headers, response = @app.call(env)
     @stop   = Time.now
 
     if headers['Content-Type'].to_s.include?('text/html')
-      body = (body << message)
-      headers['Content-Length'] = Rack::Utils.bytesize(body.to_s).to_s
+      body = ''
+      response.each { |part| body << part }
+      body << message
+      headers['Content-Length'] = body.length.to_s
+      response = [body]
     end
-    [status, headers, body]
+    [status, headers, response]
   end
    
 
