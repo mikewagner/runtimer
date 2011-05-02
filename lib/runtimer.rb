@@ -1,3 +1,5 @@
+require 'rack'
+
 class Runtimer
 
   def initialize( app, options = {} )
