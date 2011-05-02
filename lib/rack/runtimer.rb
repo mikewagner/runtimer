@@ -9,7 +9,14 @@ module Rack
     end
 
 
-    def call(env)
+    def call
+      status, headers, response = @app.call(env)
+      body = 'This is a test'
+      headers['Content-Length'] = Rack::Utils.bytesize(body).to_s
+      [status, headers, [body]]
+    end
+
+    def temp(env)
       @start = Time.now
       status, headers, response = @app.call(env)
       @stop   = Time.now
