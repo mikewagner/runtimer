@@ -13,12 +13,15 @@ module Rack
       status, headers, response = @app.call(env)
       @stop   = Time.now
 
-      if headers['Content-Type'].to_s.include?('text/html')
+      if headers['Content-Type'] =~ /text\/html|application\/xhtml\+xml/
         body = ''
         response.each { |part| body << part }
-        body << message
-        headers['Content-Length'] = body.length.to_s
-        response = [body]
+        index = body.rindex('</body>')
+        if index
+          body.insert( index, message() )
+          headers['Content-Length'] = body.length.to_s
+          response = [body]
+        end
       end
       [status, headers, response]
     end
