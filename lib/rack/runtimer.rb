@@ -18,7 +18,7 @@ module Rack
         response.each { |part| body << part }
         index = body.rindex('</body>')
         if index
-          body.insert( index, message() )
+          body.insert( index, 'This is a test' )
           headers['Content-Length'] = body.length.to_s
           response = [body]
         end
@@ -30,7 +30,7 @@ module Rack
     private
 
     def message
-      "<!-- Response time: #{@stop - @start} -->\n"
+     # "<!-- Response time: #{@stop - @start} -->"
     end
 
   end
