@@ -33,7 +33,7 @@ module Rack
     private
 
     def message
-     # "<!-- Response time: #{@stop - @start} -->"
+     "<!-- Response time: #{@stop - @start} -->"
     end
 
   end
