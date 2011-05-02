@@ -8,15 +8,7 @@ module Rack
       @app = app
     end
 
-
     def call(env)
-      status, headers, response = @app.call(env)
-      body = 'This is a test'
-      headers['Content-Length'] = Rack::Utils.bytesize(body).to_s
-      [status, headers, [body]]
-    end
-
-    def temp(env)
       @start = Time.now
       status, headers, response = @app.call(env)
       @stop   = Time.now
@@ -26,7 +18,7 @@ module Rack
         response.each { |part| body << part }
         index = body.rindex('</body>')
         if index
-          body.insert( index, "<!-- This is a test -->" )
+          body.insert( index, message )
           headers['Content-Length'] = Rack::Utils.bytesize(body).to_s
           response = [body]
         end
