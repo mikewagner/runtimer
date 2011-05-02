@@ -21,7 +21,7 @@ class Runtimer
   private
 
   def message
-    "<!-- Reponse time: #{@stop - @start} -->\n"
+    "<!-- Response time: #{@stop - @start} -->\n"
   end
 
 end
