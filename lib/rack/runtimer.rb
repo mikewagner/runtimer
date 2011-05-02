@@ -1,4 +1,5 @@
 require 'rack'
+require 'rack/utils'
 
 module Rack
   class Runtimer
@@ -18,12 +19,15 @@ module Rack
         response.each { |part| body << part }
         index = body.rindex('</body>')
         if index
-          body.insert( index, 'This is a test' )
-          headers['Content-Length'] = body.length.to_s
+          body.insert( index, "<!-- This is a test -->" )
+          headers['Content-Length'] = Rack::Utils.bytesize(body).to_s
           response = [body]
         end
       end
       [status, headers, response]
+    rescue Exception => ex
+      env['rack.errors'].write("#{ex.message}\n") if env['rack.errors']
+      [500, {}, ex.message] 
     end
      
 
