@@ -4,12 +4,12 @@ require 'rack/utils'
 module Rack
   class Runtimer
 
-    def initialize( app, options = {} )
-      @app, @options = app, options
+    def initialize( app )
+      @app = app
     end
 
 
-    def call
+    def call(env)
       status, headers, response = @app.call(env)
       body = 'This is a test'
       headers['Content-Length'] = Rack::Utils.bytesize(body).to_s
